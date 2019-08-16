@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<canvas id="canvas" width="400" height="400" class="canvas"></canvas>
+<canvas id="canvas" width="800" height="800" class="canvas"></canvas>
 
 <!--
 <select name="colors" id="colorpick">
@@ -26,6 +26,17 @@
 
 </body>
 <script>
+
+    function getObjects() {
+        return {"objects":[{"type":"path","version":"3.3.0","originX":"left","originY":"top","left":366.99,"top":240.99,"width":107.01,"height":259.02,"fill":null,"stroke":"#fffccc","strokeWidth":10,"strokeDashArray":null,"strokeLineCap":"round","strokeDashOffset":0,"strokeLineJoin":"round","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"path":[["M",371.99,245.99],["Q",372,246,372.5,246],["Q",373,246,374.5,246.5],["Q",376,247,380,251],["Q",384,255,387,259.5],["Q",390,264,393,268],["Q",396,272,400,277],["Q",404,282,406.5,287],["Q",409,292,412.5,297.5],["Q",416,303,418.5,308.5],["Q",421,314,425,321.5],["Q",429,329,432.5,336.5],["Q",436,344,441,353.5],["Q",446,363,449,370],["Q",452,377,455.5,387],["Q",459,397,461.5,402.5],["Q",464,408,465.5,414],["Q",467,420,468.5,427],["Q",470,434,471.5,440],["Q",473,446,474.5,452],["Q",476,458,476.5,463.5],["Q",477,469,477.5,474.5],["Q",478,480,478,484],["Q",478,488,478.5,492],["Q",479,496,479,498.5],["Q",479,501,479,502.5],["Q",479,504,479,504.5],["L",479,505.01]]},{"type":"path","version":"3.3.0","originX":"left","originY":"top","left":684,"top":334.99,"width":2.01,"height":7.02,"fill":null,"stroke":"#fffccc","strokeWidth":10,"strokeDashArray":null,"strokeLineCap":"round","strokeDashOffset":0,"strokeLineJoin":"round","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"path":[["M",690,339.99],["Q",690,340,689.5,340],["Q",689,340,689,340.5],["Q",689,341,689,342],["Q",689,343,689,344],["Q",689,345,689.5,345],["Q",690,345,690,345.5],["Q",690,346,690.5,346.5],["L",691.01,347.01]]},{"type":"path","version":"3.3.0","originX":"left","originY":"top","left":208.99,"top":652,"width":352.02,"height":0,"fill":null,"stroke":"#FFFF00","strokeWidth":10,"strokeDashArray":null,"strokeLineCap":"round","strokeDashOffset":0,"strokeLineJoin":"round","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"path":[["M",213.99,657],["Q",214,657,215,657],["Q",216,657,217.5,657],["Q",219,657,221.5,657],["Q",224,657,228,657],["Q",232,657,238.5,657],["Q",245,657,257.5,657],["Q",270,657,287.5,657],["Q",305,657,328,657],["Q",351,657,370,657],["Q",389,657,409.5,657],["Q",430,657,444.5,657],["Q",459,657,474,657],["Q",489,657,503,657],["Q",517,657,529,657],["Q",541,657,553.5,657],["L",566.01,657]]}]};
+    }
+    
+    function renderHandler(evt) {
+        console.log(canvas.toObject());
+    }
+    
+    
+    
     var canvas;
 
     $(function () {
@@ -34,12 +45,18 @@
         canvas.isDrawingMode= 1;
         canvas.freeDrawingBrush.color = "#fffccc";
         canvas.freeDrawingBrush.width = 10;
+        canvas.on('after:render', renderHandler);
+
+        canvas.loadFromJSON(getObjects());
+
         canvas.renderAll();
 
         document.getElementById('colorpicker').addEventListener('click', function (e) {
             console.log(e.target.value);
             canvas.freeDrawingBrush.color = e.target.value;
         });
+
+
     });
 </script>
 </html>
