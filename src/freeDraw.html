@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <script src="lib/fabric.js"></script>
+</head>
+<body>
+
+<canvas id="canvas" width="400" height="400" class="canvas"></canvas>
+
+<!--
+<select name="colors" id="colorpick">
+  <option value="#FFFF00">Yellow</option>
+  <option value="#000000">Black</option>
+  <option value="#FF0000">Red</option>
+</select>
+-->
+
+<div id= "colorpicker">
+    <button id= "yellow" value= "#FFFF00">yellow</button>
+    <button id= "black" value= "#000000">black</button>
+</div>
+
+
+</body>
+<script>
+    var canvas;
+
+    $(function () {
+        canvas = window._canvas = new fabric.Canvas('canvas');
+        canvas.backgroundColor = '#efefef';
+        canvas.isDrawingMode= 1;
+        canvas.freeDrawingBrush.color = "#fffccc";
+        canvas.freeDrawingBrush.width = 10;
+        canvas.renderAll();
+
+        document.getElementById('colorpicker').addEventListener('click', function (e) {
+            console.log(e.target.value);
+            canvas.freeDrawingBrush.color = e.target.value;
+        });
+    });
+</script>
+</html>
+
